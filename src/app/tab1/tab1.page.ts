@@ -1,4 +1,4 @@
-import { Component, ElementRef, QueryList, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
 import { Navigate } from '../global-service.service';
 import{ ApiService } from '../api.service';
 import {Router, RouterModule} from '@angular/router';
@@ -26,13 +26,14 @@ export class Tab1Page {
   pwd!:String;
   url! : String;
   err! : Error;
+  type! : String;
+
  public off = false;
 
   constructor(private api: ApiService ,private router:Router, private http:HttpRequestService, private renderer : Renderer2) {}
 
   
   onClick(){
-    
    this.api.login(this.pwd,this.login);
   }
 
@@ -46,9 +47,18 @@ export class Tab1Page {
   console.log(this.off.valueOf());
   
   this.off = ! this.off ;
-  
   return this.off;
   
+ }
+
+ getClass(): String{
+  if(this.off === false){
+    this.type = "text";
+  }else{
+    this.type = "password";
+  }
+  console.log(this.type.valueOf);
+  return this.type;
  }
 
 
