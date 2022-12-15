@@ -1,0 +1,8 @@
+{
+  "name": "app_dauphin",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

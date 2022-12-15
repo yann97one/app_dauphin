@@ -1,0 +1,201 @@
+
+   ion-content{
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+
+        --ion-background-color: linear-gradient(to right, #83a4d4, #b6fbff);
+
+        
+
+         .form{
+            margin: 10em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .custom{
+                text-align: center;
+                margin-bottom: 1em;
+                width: 200px;
+                background-color: rgb(247, 247, 247);
+                color: black;
+
+            }
+
+          .icon{
+            z-index: 5;
+            .svg{
+                display: block;
+                
+                position: absolute;
+                
+                // border: 1px black solid;
+                width: 15%;
+                z-index: 3;
+            }
+
+            .svg-off{
+                display: none;
+                width: 15%;
+               
+            }
+          }
+
+            ion-label{
+                color: black !important;
+            }
+            
+           
+            h4{
+                margin: 1em,1em,1em;
+            }
+        
+            a{
+                z-index: 3;
+                display: inline-block;
+                flex-direction: row;
+                margin-top: 1em;
+                margin-bottom: 2em;
+                
+            }
+            .button{
+                margin-top: 10em;
+                width: 50em;
+                background-color: transparent;
+            }
+            ion-item > ion-button{
+                margin: 0;
+                font-size: 1em;
+                background-color: none;
+            }
+         }
+
+         h3{
+            display: inline;
+            text-align: center;
+            margin-top: 90px;
+        }
+
+        .form>div>ion-button{
+            margin-top: 22em;
+        }
+   }
+
+   ion-header{
+    text-align: center;
+    --ion-background-color: linear-gradient(to right, #83a4d4, #b6fbff);
+    h2{
+        color: white;
+    }
+   }
+
+   ion-footer{
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
+    div>ion-button{
+        height: 5em;
+        width: 100%;
+        border: none;
+        border-radius: 10%;
+    }
+    div{
+        background: linear-gradient(to right, #83a4d4, #b6fbff);
+    }
+   }
+
+   ion-header{
+    background-color: #009fe3;
+   }
+   .ion-page{
+    align-items: center;
+    
+    display: flex;
+    flex-direction: column;
+    
+    & img{
+        margin-top: 3em;
+        
+        //display: flex;
+        width: 80%;
+        //height: 80%;
+        text-align: center;
+        margin: none;
+        
+     }
+   }
+    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   /*.ion-page{
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        
+        
+        margin-top: 11em;
+        .form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           
+            .custom{
+                text-align: center;
+                margin-bottom: 1em;
+                border-radius: 4%;
+                width: 200px;
+                background-color: rgb(247, 247, 247);
+            }
+            h3{
+                text-align: center;
+                margin-top: 90px;
+            }
+            h4{
+                margin: 1em,1em,1em;
+            }
+        
+            a{
+                margin-top: 5px;
+                margin-bottom: 2em;
+                text-align: center;
+            }
+            .button{
+                margin-top: 90px;
+                width: 50em;
+            }
+           
+        }
+    
+        .img img{
+            position: relative;
+            display: flex;
+            width: 100%;
+            min-height: 100%;
+            text-align: center;
+            margin: none;
+         }
+    
+        
+    }
+    
+    
+    
+.content{
+    #main-content > div{
+        --ion-background-color: linear-gradient(to right, #83a4d4, #b6fbff);
+    }
+    --ion-background-color: linear-gradient(to right, #83a4d4, #b6fbff);
+    
+}*/
