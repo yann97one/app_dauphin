@@ -1,12 +1,8 @@
 import { Component, ElementRef, EventEmitter, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
-import { Navigate } from '../global-service.service';
 import{ ApiService } from '../api.service';
 import {Router, RouterModule} from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { Console } from 'console';
 import { HttpRequestService } from '../http-request.service';
-import { access } from 'fs';
-import { addIcons } from 'ionicons';
+
 
 //import {MatIconRegistry}
 @Component({
@@ -24,10 +20,8 @@ export class Tab1Page {
   @ViewChild('img') img!: QueryList<ElementRef<HTMLImageElement>>;
   login!:String;
   pwd!:String;
-  url! : String;
-  err! : Error;
-  type! : String;
-
+  type! : String; // Variable permettant de gérer le type d'input de mdp
+  public url = "assets/icon/on.png";
  public off = false;
 
   constructor(private api: ApiService ,private router:Router, private http:HttpRequestService, private renderer : Renderer2) {}
@@ -47,17 +41,21 @@ export class Tab1Page {
   console.log(this.off.valueOf());
   
   this.off = ! this.off ;
+  if(this.off == true){
+    this.url="assets/icon/on.png";
+  }else{
+    this.url="assets/icon/off.png";
+  }
   return this.off;
   
  }
 
  getClass(): String{
-  if(this.off === false){
+  if(this.url === "assets/icon/on.png"){
     this.type = "text";
   }else{
     this.type = "password";
   }
-  console.log(this.type.valueOf);
   return this.type;
  }
 

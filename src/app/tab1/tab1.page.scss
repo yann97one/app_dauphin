@@ -23,23 +23,9 @@
 
             }
 
-          .icon{
-            z-index: 5;
-            .svg{
-                display: block;
-                
-                position: absolute;
-                
-                // border: 1px black solid;
-                width: 15%;
-                z-index: 3;
-            }
+          
+            
 
-            .svg-off{
-                display: none;
-                width: 15%;
-               
-            }
           }
 
             ion-label{
@@ -80,7 +66,7 @@
         .form>div>ion-button{
             margin-top: 22em;
         }
-   }
+   
 
    ion-header{
     text-align: center;
@@ -124,7 +110,28 @@
      }
    }
     
-   
+   .input-content{
+    position: relative;
+    .icon{
+        // z-index: 5;
+         //position: absolute;
+         top:0;
+         right:0;
+             background-color: transparent;
+         .svg{
+            z-index: 3;
+            width: 3em;
+            position:absolute;
+            right: 3px;
+            top: 0px;
+            /*display: inline-block;
+             text-align: right;
+             right: -1px;
+             top: 4px;
+             margin-right: 4px;*/
+         }
+   }
+}
    
    
    

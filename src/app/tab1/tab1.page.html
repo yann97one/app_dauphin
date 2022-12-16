@@ -11,13 +11,18 @@
       <ion-label>Identifiant</ion-label>
       <ion-input  [(ngModel)]="login"  class="custom" required="true"></ion-input>
       <ion-label>Mot&nbsp;de&nbsp;passe</ion-label>
-      <ion-input #pass  [(ngModel)]="pwd" class="custom"  type= {{getClass()}} required="true">
+
+      <div style="position:relative;display:inline-block" class="input-content">
+        <ion-input #pass  [(ngModel)]="pwd" class="custom"  type= {{getClass()}} required="true">
+        </ion-input>
         <div class="icon">
-          <a (click)="hidePass()"><img src="assets/icon/on.png"  [className]="this.off == true ? 'svg-off' : 'svg'"></a>
-          <a (click)="hidePass()"><img src="assets/icon/off.png"  [className]="this.off == false ? 'svg-off' : 'svg'"></a>
+          <button (click)="hidePass()"><img src= {{this.url}} class="svg" ></button>
         </div>
-      </ion-input>
+      </div>
       
+      
+
+      <!-- [className]="this.off == true ? 'svg' : 'svg-off'" -->
       <a (click)="go()" [routerLink]="['/forgetpass']">Mot&nbsp;de&nbsp;passe&nbsp;oublié?</a>
      
      
