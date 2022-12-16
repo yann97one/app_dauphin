@@ -20,19 +20,26 @@ export interface APILOGIN_T{
 })
 
 export class ApiService {
-
+//"&use2fa="+auth
   constructor(private _http_o :HttpClient) { }
    url = "https://webapp.dauphintelecom-infrastructure.com/api";
-  login(mdp:String, username:String){
+  login(mdp:String, username:String, callback : Function, auth? : String){
     this._http_o.get<APILOGIN_T>(this.url+"/auth?password=" + mdp +"&login="+ username,{ responseType:"json"})
         .subscribe((va_response_o)=> {
 
-          
-            if (va_response_o.error.code != 200) {
-              return;
-            } 
-
+          callback(va_response_o);
+            
         });
+        if(typeof auth != "undefined"){
+          this._http_o.get<APILOGIN_T>(this.url+"/auth?password=" + mdp +"&login="+ username+ "&key2fa="+auth ,{ responseType:"json"})
+          .subscribe((va_response_o)=> {
+  
+            callback(va_response_o);
+              
+          });
+        }
+        
+
 }
   }
 

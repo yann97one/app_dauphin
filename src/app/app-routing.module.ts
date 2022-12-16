@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { IonicModule } from '@ionic/angular/ionic-module';
+import { ChangeMdpComponent } from './change-mdp/change-mdp.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { Tab1Page } from './tab1/tab1.page';
 import { Tab2Page } from './tab2/tab2.page';
@@ -10,11 +12,14 @@ const routes: Routes = [
   { path: 'forgetpass', component: Tab2Page },
   { path: 'Tab1Page', component: Tab1Page },
   { path: 'errPage', component: Tab3Page },
+  { path: 'change_pass', component: ChangeMdpComponent },
   
   
 ];
 @NgModule({
   imports: [
+    
+    
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]

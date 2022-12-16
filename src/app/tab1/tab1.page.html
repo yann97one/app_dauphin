@@ -9,11 +9,12 @@
               
       <h3>CONNEXION</h3>
       <ion-label>Identifiant</ion-label>
-      <ion-input  [(ngModel)]="login"  class="custom" required="true"></ion-input>
+      <ion-input  [(ngModel)]="login"   class="custom" required="true"></ion-input>
       <ion-label>Mot&nbsp;de&nbsp;passe</ion-label>
 
       <div style="position:relative;display:inline-block" class="input-content">
-        <ion-input #pass  [(ngModel)]="pwd" class="custom"  type= {{getClass()}} required="true">
+        <ion-input #pass  (click)="go()" [(ngModel)]="pwd" class="custom"  type= {{getClass()}} required="true">
+          
         </ion-input>
         <div class="icon">
           <button (click)="hidePass()"><img src= {{this.url}} class="svg" ></button>
@@ -23,17 +24,33 @@
       
 
       <!-- [className]="this.off == true ? 'svg' : 'svg-off'" -->
-      <a (click)="go()" [routerLink]="['/forgetpass']">Mot&nbsp;de&nbsp;passe&nbsp;oublié?</a>
+      <a [routerLink]="['/forgetpass']">Mot&nbsp;de&nbsp;passe&nbsp;oublié?</a>
      
+      
+     
+      
+    
      
       
   </div>
+  <!-- [style.display]="display2fa" -->
+  <div #div [style.display]="display2fa">
+    <div class="auth" >
+      <ion-label>Code authentification à deux facteurs</ion-label>
+      <ion-input [(ngModel)]="auth"placeholder="Custom input" class="input"></ion-input>
+      <ion-button expand="block" fill="clear" shape="round" (click)="onClick()">
+        VALIDER
+      </ion-button>
+      
+     </div>
+  </div>
+
   
   <!-- <img (click)="hidePass()"class="off" src="assets/icon/eye-off.svg"> -->
 </ion-content>
 <ion-footer>
   <div>
-    <ion-button (click)="onClick()"expand="full" class="button">Valider</ion-button>
+    <ion-button (click)="onClick()"expand="full" class="button" type="submit">Valider</ion-button>
   </div>
 </ion-footer>
                                   <!-- PARTIE COMMENTEE -->

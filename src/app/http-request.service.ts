@@ -21,9 +21,10 @@ export class HttpRequestService implements HttpInterceptor
             
         switch (va_error_o.status)
           {
+            
               case 404:
                   "Page non trouvée ou accès refusé";
-                  this.router_o.navigate(['/forgetpass?err=401&msg='+va_error_o]);
+                  this.router_o.navigate(['/errPage'],{ queryParams: { err: '404',  msg:va_error_o.message}});
               break;
 
               case  401:
@@ -33,7 +34,7 @@ export class HttpRequestService implements HttpInterceptor
 
               case 500:
                 "Erreur interne";
-                this.router_o.navigate(['/errPage?err=500&msg='+va_error_o])
+                this.router_o.navigate(['/errPage'],{ queryParams: { err: '500',  msg:va_error_o.message}})
 
               break;
               

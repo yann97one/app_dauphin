@@ -1,152 +1,199 @@
+ion-content {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    --ion-background-color: linear-gradient(to right, #83a4d4, #b6fbff);
 
-   ion-content{
-        justify-content: center;
+
+
+    .form {
+        margin: 10em;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        padding-right : 10px;
+        .custom {
+           
+            text-align: left;
+            margin-bottom: 1em;
+            width: 200px;
+            background-color: rgb(247, 247, 247);
+            color: black;
+        }
 
-        --ion-background-color: linear-gradient(to right, #83a4d4, #b6fbff);
+    }
+    
 
-        
 
-         .form{
-            margin: 10em;
+    ion-label {
+        color: black !important;
+    }
+
+
+    h4 {
+        margin: 1em, 1em, 1em;
+    }
+
+    a {
+        z-index: 3;
+        display: inline-block;
+        flex-direction: row;
+        margin-top: 1em;
+        margin-bottom: 2em;
+
+    }
+
+    .button {
+        margin-top: 10em;
+        width: 50em;
+        background-color: transparent;
+    }
+
+    ion-item >ion-button {
+        margin: 0;
+        font-size: 1em;
+        background-color: none;
+    }
+
+    .true{
+        display: block;
+        .auth {
+
+            text-align: center;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
 
-            .custom{
-                text-align: center;
-                margin-bottom: 1em;
-                width: 200px;
-                background-color: rgb(247, 247, 247);
-                color: black;
-
-            }
-
-          
-            
-
-          }
-
-            ion-label{
-                color: black !important;
-            }
-            
-           
-            h4{
-                margin: 1em,1em,1em;
-            }
-        
-            a{
-                z-index: 3;
-                display: inline-block;
-                flex-direction: row;
+            .input {
                 margin-top: 1em;
-                margin-bottom: 2em;
-                
-            }
-            .button{
-                margin-top: 10em;
-                width: 50em;
-                background-color: transparent;
-            }
-            ion-item > ion-button{
-                margin: 0;
-                font-size: 1em;
-                background-color: none;
-            }
-         }
 
-         h3{
-            display: inline;
+                width: 10em;
+                border: 1px black solid;
+            }
+        }
+    }
+
+    .none{
+        display: none;
+
+        .auth {
+
             text-align: center;
-            margin-top: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .input {
+                margin-top: 1em;
+
+                width: 10em;
+                border: 1px black solid;
+            }
         }
 
-        .form>div>ion-button{
-            margin-top: 22em;
-        }
-   
+    }
+}
 
-   ion-header{
+h3 {
+    display: inline;
+    text-align: center;
+    margin-top: 90px;
+}
+
+.form>div>ion-button {
+    margin-top: 22em;
+}
+
+
+ion-header {
     text-align: center;
     --ion-background-color: linear-gradient(to right, #83a4d4, #b6fbff);
-    h2{
+
+    h2 {
         color: white;
     }
-   }
+}
 
-   ion-footer{
+ion-footer {
     background: linear-gradient(to right, #83a4d4, #b6fbff);
-    div>ion-button{
+
+    div>ion-button {
         height: 5em;
         width: 100%;
         border: none;
         border-radius: 10%;
     }
-    div{
+
+    div {
         background: linear-gradient(to right, #83a4d4, #b6fbff);
     }
-   }
+}
 
-   ion-header{
+ion-header {
     background-color: #009fe3;
-   }
-   .ion-page{
+}
+
+.ion-page {
     align-items: center;
-    
+
     display: flex;
     flex-direction: column;
-    
-    & img{
+
+    & img {
         margin-top: 3em;
-        
+
         //display: flex;
         width: 80%;
         //height: 80%;
         text-align: center;
         margin: none;
-        
-     }
-   }
-    
-   .input-content{
+
+    }
+}
+
+.input-content {
     position: relative;
-    .icon{
+
+    .icon {
         // z-index: 5;
-         //position: absolute;
-         top:0;
-         right:0;
-             background-color: transparent;
-         .svg{
+        //position: absolute;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+       
+        .svg {
+            
             z-index: 3;
-            width: 3em;
-            position:absolute;
+            width: 2em;
+            position: absolute;
             right: 3px;
-            top: 0px;
+            top: 6px;
             /*display: inline-block;
              text-align: right;
              right: -1px;
              top: 4px;
              margin-right: 4px;*/
-         }
-   }
+        }
+    }
 }
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   /*.ion-page{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.ion-page{
         justify-content: center;
         display: flex;
         flex-direction: column;
