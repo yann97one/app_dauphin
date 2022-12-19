@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpRequestService } from './http-request.service';
 import { ChangeMdpComponent } from './change-mdp/change-mdp.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent ,ChangeMdpComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     {provide: HTTP_INTERCEPTORS, useClass: HttpRequestService, multi: true}
     ],

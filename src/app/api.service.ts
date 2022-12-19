@@ -1,18 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 export interface ERROR_T{
   code:number,
   string:string[]
 }
-export interface APILOGIN_T{
+export interface APILOGIN_IN{
+  //{error:{code:'', string:[]}, locked?:'', use2fa?:'', forceChange?:''}
+  login:string;
+  password:string;
+  key2fa? : String;
+  newPassword? : String; 
+}
+
+export interface APILOGIN_OUT{
   //{error:{code:'', string:[]}, locked?:'', use2fa?:'', forceChange?:''}
 
   error : ERROR_T,
-  locked:number,
+  locked?:number,
   use2fa?: number,
-  forcedChange? : number
+  forceChange? : number
+  
+ 
 }
 
 @Injectable({
@@ -23,22 +34,24 @@ export class ApiService {
 //"&use2fa="+auth
   constructor(private _http_o :HttpClient) { }
    url = "https://webapp.dauphintelecom-infrastructure.com/api";
-  login(mdp:String, username:String, callback : Function, auth? : String){
-    this._http_o.get<APILOGIN_T>(this.url+"/auth?password=" + mdp +"&login="+ username,{ responseType:"json"})
+  login(va_param_o:APILOGIN_IN, callback : Function){
+    var vl_url_str;
+
+    vl_url_str = this.url+"/auth?login=" + va_param_o.login + "&password=" + va_param_o.password;
+    if (va_param_o.key2fa != null) {
+      vl_url_str += "&key2fa=" + va_param_o.key2fa;
+    }
+
+    if (va_param_o.newPassword != null) {
+      vl_url_str += "&newPassword=" + va_param_o.newPassword;
+    }
+
+    this._http_o.get<APILOGIN_OUT>(vl_url_str, { responseType:"json"})
         .subscribe((va_response_o)=> {
 
           callback(va_response_o);
             
         });
-        if(typeof auth != "undefined"){
-          this._http_o.get<APILOGIN_T>(this.url+"/auth?password=" + mdp +"&login="+ username+ "&key2fa="+auth ,{ responseType:"json"})
-          .subscribe((va_response_o)=> {
-  
-            callback(va_response_o);
-              
-          });
-        }
-        
 
 }
   }

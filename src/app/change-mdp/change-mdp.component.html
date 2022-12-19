@@ -3,11 +3,31 @@
 </ion-header>
 <ion-content>
   <div class="ion-page" id="main-content">
+    <h2>Mettre à jour le mot de passe</h2>
     <img src="assets/img/dti.png">
   </div>
 
-  <div>
-    <label for="">E-mail</label>
-    <ion-input  class="custom"></ion-input>
+  <div class="form">
+   
+    <ion-label>
+      <h2>Nouveau mot de passe</h2>
+    </ion-label>
+    <ion-input   class="custom" ></ion-input>
+    <!-- <ion-button  expand="full" >
+      Valider
+    </ion-button> -->
+    <div #div [style.display]="display2fa"  class="divauth">  
+      <div class="auth" >
+        <ion-label>Code authentification à deux facteurs</ion-label>
+        <ion-input [(ngModel)]="auth2fa"  placeholder="A2F" class="input" type="number"></ion-input>
+      </div>
+    </div>
   </div>
+
+  
 </ion-content>
+<footer>
+  <ion-button expand="block"  (click)="OnClick()" color="success">
+    VALIDER
+  </ion-button>
+</footer>

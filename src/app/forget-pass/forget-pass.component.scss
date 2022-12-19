@@ -58,5 +58,25 @@
         margin-top: 7em;
         text-align: center;
     }
+div{
+    .auth{
+        
+        background: linear-gradient(to right, #83a4d4, #b6fbff);
+        border: 1px black solid;
+        width: 20em;
+        height: 11em;
+        margin-left: 2em;
+        ion-button{
+
+        }
+
+        .input{
+            text-align: center;
+            padding-top: 2em
+        }
+    }
+
+}
+   
 
 }
