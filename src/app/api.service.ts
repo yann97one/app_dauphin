@@ -21,9 +21,9 @@ export interface APILOGIN_OUT{
   error : ERROR_T,
   locked?:number,
   use2fa?: number,
-  forceChange? : number
+  forceChange?:number
+
   
- 
 }
 
 @Injectable({
@@ -37,18 +37,18 @@ export class ApiService {
   login(va_param_o:APILOGIN_IN, callback : Function){
     var vl_url_str;
 
-    vl_url_str = this.url+"/auth?login=" + va_param_o.login + "&password=" + va_param_o.password;
+    vl_url_str = this.url+"/auth?login=" +va_param_o.login + "&password=" + va_param_o.password
     if (va_param_o.key2fa != null) {
       vl_url_str += "&key2fa=" + va_param_o.key2fa;
     }
 
     if (va_param_o.newPassword != null) {
-      vl_url_str += "&newPassword=" + va_param_o.newPassword;
+      vl_url_str = this.url+"/auth?login=" + decodeURIComponent(va_param_o.login.substring(1,va_param_o.login.length -1)) + "&password=" + decodeURIComponent(va_param_o.password.substring(1,va_param_o.password.length -1)) + "&newPassword=" + va_param_o.newPassword;
     }
 
     this._http_o.get<APILOGIN_OUT>(vl_url_str, { responseType:"json"})
         .subscribe((va_response_o)=> {
-
+            
           callback(va_response_o);
             
         });

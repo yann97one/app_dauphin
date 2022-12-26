@@ -12,22 +12,25 @@
     <ion-label>
       <h2>Nouveau mot de passe</h2>
     </ion-label>
-    <ion-input   class="custom" ></ion-input>
+    <ion-input   class="custom" [(ngModel)]="new_pwd"></ion-input>
     <!-- <ion-button  expand="full" >
       Valider
     </ion-button> -->
-    <div #div [style.display]="display2fa"  class="divauth">  
-      <div class="auth" >
-        <ion-label>Code authentification à deux facteurs</ion-label>
-        <ion-input [(ngModel)]="auth2fa"  placeholder="A2F" class="input" type="number"></ion-input>
-      </div>
-    </div>
   </div>
 
-  
+  <div [style.display]="display2fa">
+    <div class="auth">
+      <ion-label>Code authentification à deux facteurs</ion-label>
+      <ion-input [(ngModel)]="auth2fa" placeholder="Custom input" class="input"></ion-input>
+      <ion-button expand="block" shape="round" (click)="onSubmit()" color="success">
+        CONFIRMER SAISIE
+      </ion-button>
+      MDP : TestDeLaMort1234@
+    </div>
+  </div>
 </ion-content>
-<footer>
-  <ion-button expand="block"  (click)="OnClick()" color="success">
-    VALIDER
-  </ion-button>
-</footer>
+<ion-footer>
+  <div>
+    <ion-button (click)="onSubmit()" expand="full" [disabled]="button" type="submit">Valider</ion-button>
+  </div>
+</ion-footer>

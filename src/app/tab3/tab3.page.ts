@@ -13,7 +13,8 @@ export class Tab3Page {
  
   public err! : number;
   public msg! : String;
-  public test! : String;
+  
+
   constructor(private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.err = params['err'];
@@ -21,6 +22,7 @@ export class Tab3Page {
       
     })
   }
+
   
   
 }

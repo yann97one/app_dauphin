@@ -1,0 +1,25 @@
+ion-title{
+    background-color: #009fe3;
+}
+#main-content {
+    ion-menu-button {
+        color: black;
+    }
+
+   
+}
+
+.ion-padding{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .menu_link{
+        list-style-type: none;
+       text-decoration: none;
+    }
+}
+
+.active{
+    text-decoration: underline;
+    color: black;
+}

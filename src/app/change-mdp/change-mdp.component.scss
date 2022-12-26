@@ -74,29 +74,105 @@ ion-content{
           }
     }
 
-    .divauth{
-        .auth{
-            border: 1px black solid;
-            width: 10em;
-            height: 3em;
-            display: flex;
-            flex-direction: column;
-            top: 640px;
-            position: relative;
     
-            ion-label{
-                bottom: 80px;
-            }
-
-            ion-input{
-                text-align: center;
-            }
-    }
-    }
    
+}
+
+
+    .auth {
+        height: 9em;
+        position: absolute;
+        bottom: 1em;
+        width: 100%;
+        background-color: white;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+
+
+        .input {
+            margin-top: 1em;
+
+            width: 10em;
+            border: 1px black solid;
+        }
+    }
+
+   
+
+
+
+.none{
+    display: none;
+
+    .auth {
+
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .input {
+            margin-top: 1em;
+
+            width: 10em;
+            border: 1px black solid;
+        }
+    }
+
 }
 
 footer{
     background: linear-gradient(to right, #83a4d4, #b6fbff);
-    
+    ion-button{
+        background-color: #009fe3;
+    }
 }
+
+/*
+
+    .true{
+        display: block;
+        .auth {
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .input {
+                margin-top: 1em;
+
+                width: 10em;
+                border: 1px black solid;
+            }
+        }
+    }
+
+    .none{
+        display: none;
+
+        .auth {
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .input {
+                margin-top: 1em;
+
+                width: 10em;
+                border: 1px black solid;
+            }
+        }
+
+    }
+
+    */
