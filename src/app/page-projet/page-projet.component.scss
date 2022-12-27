@@ -1,0 +1,46 @@
+#main-content{
+    display: flex;
+    flex-direction: column;
+    .select_proj{
+        margin-bottom: 2em;
+        .select{
+            width: 15em;
+            text-align: center;
+            border: none;
+            border-bottom:1px black solid ;
+            
+        }
+    }
+
+    .comment{
+        ion-textarea{
+            border: 1px solid black;
+            margin-top: 1em;
+            height: 20em;
+        }
+    }
+
+    .date{
+        margin-bottom: 1em;
+        input{
+            font-size: 1em;
+            width: 15em;
+            margin-bottom: 3em;
+            text-align: center;
+        }
+    }
+
+    
+
+}
+
+ion-footer{
+    top: 790px;
+    bottom: -53em;
+    left: -5px;
+    
+    ion-button{
+        width: 100%;
+       
+    }
+}

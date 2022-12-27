@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MenuPrincipalComponent implements OnInit {
 
   constructor() { }
+  public date = new Date();
   public tab_menu = [
     "Projets",
     "Test"
