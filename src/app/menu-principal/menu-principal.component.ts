@@ -13,7 +13,7 @@ export class MenuPrincipalComponent implements OnInit {
     "Projets",
     "Test"
   ]
-
+  
   ngOnInit() {}
 
   

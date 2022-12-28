@@ -109,7 +109,7 @@ vers la fonction callBackLogin()
 
  
   go() {
-    console.log("mdp : TestDeLaMort1234@ \n login: yannis.sileber");
+    console.log(" login: yannis.sileber \n mdp : TestDeLaMort1234@ \nancien mdp: dAn1oCLV \n");
     
   }
   
