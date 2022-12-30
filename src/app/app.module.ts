@@ -12,14 +12,16 @@ import { MenuPrincipalComponent } from './menu-principal/menu-principal.componen
 import { PageProjetComponent } from './page-projet/page-projet.component';
 import { CookieService } from 'ng2-cookies';
 import { CapacitorCookiesPluginWeb } from '@capacitor/core/types/core-plugins';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [AppComponent ,ChangeMdpComponent,MenuPrincipalComponent,PageProjetComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-    {provide: HTTP_INTERCEPTORS, useClass: HttpRequestService, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestService, multi: true},
     CookieService,
+    ApiService
     
     
     ],

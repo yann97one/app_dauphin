@@ -1,8 +1,10 @@
 import { Component, ElementRef, EventEmitter, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
-import { APILOGIN_IN, APILOGIN_OUT, ApiService } from '../api.service';
+import {  APILOGIN_IN, APILOGIN_OUT, ApiService } from '../api.service';
 import { Router, RouterModule } from '@angular/router';
 import { HttpRequestService } from '../http-request.service';
 import { Navigate } from '../global-service.service';
+import { HttpClient } from '@angular/common/http';
+import { first } from 'rxjs';
 
 
 //import {MatIconRegistry}
@@ -33,7 +35,7 @@ export class Tab1Page {
   forcedChange! : string;
   protected display2fa : string;
   button! : boolean;
-  constructor(private api: ApiService,private rend : Renderer2, private router : Router) { 
+  constructor(private api: ApiService, private router : Router,private http : HttpClient) { 
 
     this.display2fa = "none";
   }
@@ -49,19 +51,22 @@ vers la fonction callBackLogin()
                     "password": this.pwd};
     if (this.display2fa!="none") {
       vl_param_o.key2fa = this.auth2fa;
+      
     }
 
     if (this.display2fa!="none") {
       vl_param_o.key2fa = this.auth2fa;
+      
     }
 
         
-          this.api.login(vl_param_o,(va_json_o:APILOGIN_OUT)=>{this.callBackLogin(va_json_o)});
+       this.api.login(vl_param_o,(va_json_o:APILOGIN_OUT)=>{this.callBackLogin(va_json_o)});
   }
 
   onSubmit(){
     var vl_param_o : APILOGIN_IN; 
     var vl_param_n : APILOGIN_OUT; 
+    
      
     vl_param_o = {  "login":    this.login,
                     "password": this.pwd};
@@ -73,13 +78,17 @@ vers la fonction callBackLogin()
       localStorage.setItem('log',log);
     }
 
+   
+
      vl_param_n = {"forceChange": 0,
                    "error": {"code":0, "string": [""]}};
       if(vl_param_n.forceChange != null && vl_param_n.forceChange == 1){
           this.router.navigate(['/','change_pass'])
+          return
       }else{
         this.api.login(vl_param_o,(va_json_o:APILOGIN_OUT)=>{this.callBackLogin(va_json_o)});
-        this.router.navigate(['/','main_menu'])
+       
+        
       }    
   }
 
@@ -96,15 +105,21 @@ vers la fonction callBackLogin()
       
       this.display2fa = "block";
       this.button = true;
+      console.log("true")
+      return
     }else{
       this.display2fa = "none"
       this.button = false;
+      console.log("false")
     }
 
     if(json.forceChange != undefined && json.forceChange ==1){
       this.router.navigate(['/','change_pass']);
+      return
     }
-
+    
+    
+    this.router.navigate(['/','main_menu'])
   }
 
  
