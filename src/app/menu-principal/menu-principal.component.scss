@@ -1,5 +1,5 @@
 
-#main-content {
+ion-menu {
     
     ion-header{
         text-align: center;
@@ -7,28 +7,27 @@
     ion-menu-button {
         color: black;
     }
-
-   
-}
-
-.ion-padding{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    .menu_link{
+    .menu_link,li,a{
         list-style-type: none;
-       text-decoration: none;
+        text-decoration: none;
+        display: flex;
+        text-decoration: none;
+        flex-direction: column;
+        top: -25em;
+        position: relative;
     }
-}
+   
 
+}
 ion-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    .proj{
-        h3{
-            text-align: center;
-        }
+    .button_block{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+       
         ion-button{
             background-color: transparent;
             font-size: 6em;
@@ -36,18 +35,29 @@ ion-content{
             ion-icon{
                 font-size: 160px;
              }
+             h3{
+                position: absolute;
+                /* padding-top: 0px; */
+                padding-bottom: 10em;
+                letter-spacing: normal;
+             }
         }
         
     }
 
     .list{
-        h3{
-            text-align: center;
-        }
+        display: flex;
+        justify-content: center;
         ion-button{
             background-color: transparent;
             font-size: 6em;
             height: 3em;
+            h3{
+                position: absolute;
+                /* padding-top: 0px; */
+                padding-bottom: 10em;
+                letter-spacing: normal;
+             }
         }
         ion-icon{
             font-size: 160px;

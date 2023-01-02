@@ -4,5 +4,15 @@
     "capacitor": {},
     "cordova": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "/api": {
+        "target": "https://webapp.dauphintelecom-infrastructure.com",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+      }
+    }
+  ]
 }

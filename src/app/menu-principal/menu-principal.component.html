@@ -1,19 +1,21 @@
+                            <!-- Menu  -->
 <ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content class="ion-padding">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
     <a [routerLink]="['/page_projet']" routerLinkActive="active" class="menu_link">
       <li>Projets</li>
     </a>
-  </ion-content>
-
+  
 </ion-menu>
-
-
+    <ion-content class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+                        <!-- Corps de la page -->
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
@@ -24,19 +26,17 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <div class="proj">
-      <h3>Ajouter Projet</h3>
+    <div class="button_block">
       <ion-button [routerLink]="['/page_projet']">
+        <h3>Ajouter Projet</h3>
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-    </div>
-    <div class="list">
-      <h3>Liste des projets</h3>
-      <ion-button>
+      <ion-button [routerLink]="['/list_projet']">
+        <h3>Liste des projets</h3>
         <ion-icon name="list-outline"></ion-icon>
       </ion-button>
 
     </div>
-
+    
   </ion-content>
 </div>

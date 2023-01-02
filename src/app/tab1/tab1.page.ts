@@ -1,10 +1,8 @@
-import { Component, ElementRef, EventEmitter, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import {  APILOGIN_IN, APILOGIN_OUT, ApiService } from '../api.service';
-import { Router, RouterModule } from '@angular/router';
-import { HttpRequestService } from '../http-request.service';
-import { Navigate } from '../global-service.service';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { first } from 'rxjs';
+import { Cookie } from 'ng2-cookies';
 
 
 //import {MatIconRegistry}
@@ -22,8 +20,7 @@ import { first } from 'rxjs';
 //Classe du component de la page de connexion
 export class Tab1Page {
   ngOnInit(){
-    
-    
+
   }
  
   login!: string; //var qui enregistre l'entrée Login de l'utilisateur dans le formulaire
@@ -31,7 +28,7 @@ export class Tab1Page {
   auth2fa! : string;//var qui enregistre l'entrée d'A2F de l'utilisateur dans le formulaire
   type!: string; // Variable permettant de gérer le type d'input de mdp
   public url = "assets/icon/on.png"; 
-  public off = false;
+  public off = true;
   forcedChange! : string;
   protected display2fa : string;
   button! : boolean;
@@ -63,6 +60,14 @@ vers la fonction callBackLogin()
        this.api.login(vl_param_o,(va_json_o:APILOGIN_OUT)=>{this.callBackLogin(va_json_o)});
   }
 
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      window.location.reload();
+      event.target.complete();
+    }, 2000);
+  };
+
   onSubmit(){
     var vl_param_o : APILOGIN_IN; 
     var vl_param_n : APILOGIN_OUT; 
@@ -86,6 +91,10 @@ vers la fonction callBackLogin()
           this.router.navigate(['/','change_pass'])
           return
       }else{
+        localStorage.setItem("login",this.login)
+        localStorage.setItem("pass",this.pwd)
+        localStorage.setItem("A2F",this.auth2fa)
+        
         this.api.login(vl_param_o,(va_json_o:APILOGIN_OUT)=>{this.callBackLogin(va_json_o)});
        
         
@@ -96,13 +105,13 @@ vers la fonction callBackLogin()
  * @param json Variable qui hérite de l'interface APILOGIN_OUT
  * Cette fonction sert à gérer l'affichage de la partie A2F 
  * elle ne l'affiche qu'a condition que la @var use2fa soit différent de null
- * 
+ * @var button correspond au bouton valider du Login cette variable sert à gérer sa disponibilité
+ * en le mttant à false à true si la boite de l'A2F est affiché ou non
  */
   callBackLogin(json: APILOGIN_OUT) {
     
     if(json.use2fa != undefined && json.use2fa ==1)
     {
-      
       this.display2fa = "block";
       this.button = true;
       console.log("true")
@@ -117,6 +126,28 @@ vers la fonction callBackLogin()
       this.router.navigate(['/','change_pass']);
       return
     }
+    
+    if (typeof json.session != "undefined") {
+      this.api.session_str = json.session;
+      //Cookie.set("SADTI",JSON.stringify(json.session));
+      return
+    }
+    
+    console.log("Cookie.check :" + Cookie.check("SADTI"));
+    console.log(json);
+
+    
+      this.http.get(this.api.url , {observe: 'response'}).subscribe(response =>{
+        const cookieHeader = response.headers.get('Set-Cookie');
+        if(cookieHeader){
+            const cookie = cookieHeader.split(';').find(c => c.startsWith('SADTI')); 
+            console.log("Cookie Sadti :" + cookie);
+        }
+        
+        
+      })
+    
+
     
     
     this.router.navigate(['/','main_menu'])
@@ -134,26 +165,27 @@ vers la fonction callBackLogin()
     dans le champs du mot de passe 
   */
   hidePass(): boolean {
-    console.log(this.off.valueOf());
+    
 
     this.off = !this.off;
-    if (this.off == true) {
+    if (this.off == false) {
       this.url = "assets/icon/on.png";
     } else {
       this.url = "assets/icon/off.png";
+      
     }
+    console.log(this.off.valueOf());
     return this.off;
 
   }
   
 /**
- * 
+ * @var type correspond au type d'input 
+ * @var url correspond au chemin du fichier de l'image
  * @returns  Retourne le type que l'input prendra 
- */
-  /*
-  Fonction qui permet de "switcher" entre texte clair et texte masqué 
+ *Fonction qui permet de "switcher" entre texte clair et texte masqué 
   dans le champ mot de passe du formulaire
-  */
+*/
   getClass(): String {
     if (this.url === "assets/icon/on.png"){
       this.type = "text";

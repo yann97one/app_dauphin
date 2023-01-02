@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Cookie, CookieService } from 'ng2-cookies';
+import { callbackify } from 'util';
 
 
 export interface ERROR_T{
@@ -24,17 +25,18 @@ export interface APILOGIN_OUT{
   use2fa?: number,
   forceChange?:number
   session?:string
+  idSession?:string;
 }
 
 export interface APIRECUP{
-  project: string,
-  id: number,
-  createDate:Date,
-  creatorId: number,
-  creatorLabel:string,
-  enabled:number,
-  participant:string,
-  projectLabel: string
+  project: string | any,
+  id: string | any,
+  createDate?:Date,
+  creatorId?: number,
+  creatorLabel?:string,
+  enabled?:number,
+  participant?:string,
+  projectLabel?: string
   //{"error":{"code":200,"string":["Success"]},"projects":[{"id":"3","createDate":"21\/12\/2022","creatorId":"119",
   //"creatorLabel":"SEPULCRE Patrice","label":"tretrtrtret","enabled":"1","charging":"60",
   //"participants":[{"id":"119","type":"0"},{"id":"4317","type":"0"}]},{"id":"2","createDate":"19\/12\/2022",
@@ -57,11 +59,20 @@ export interface APILOGED{
 })
 
 export class ApiService {
+
+  public session_str : string | null;
+  public idSession : string |null;
 //"&use2fa="+auth
-  constructor(private _http_o :HttpClient, private cookie:CookieService,) { }
+  constructor(private _http_o :HttpClient, private cookie:CookieService) { 
+
+    this.session_str = null;
+    this.idSession = null;
+  }
+
    url = "https://webapp.dauphintelecom-infrastructure.com/api";
-   //url = "http://webapp.dauphintelecom-infrastructure.local/api";
-   //urlrecup = "https://webapp.dauphintelecom-infrastructure.com/api/timemgnt/project?enabled=1";
+    //url = "http://webapp.dauphintelecom-infrastructure.local/api";
+     //url = "http://localhost:8100/api";
+   
     reponse : any;
   login(va_param_o:APILOGIN_IN, callback : Function){
     var vl_url_str: string;
@@ -76,10 +87,10 @@ export class ApiService {
     }
     
     
-    const headers = new HttpHeaders().set('SADTI', '');
+   
 
 
-    this._http_o.get<APILOGIN_OUT>(vl_url_str, { responseType:"json",observe:'response'})
+    this._http_o.get<APILOGIN_OUT>(vl_url_str, { responseType:"json",observe:'response',withCredentials:true})
         .subscribe((va_response_o)=> {
           
             
@@ -122,8 +133,8 @@ export class ApiService {
     }
  }*/
 
-recup(va_param_r:APIRECUP, callback: Function){
- //var url = this.http.get("https://webapp.dauphintelecom-infrastructure.com/api/timemgnt/project?enabled=1").pipe(first());
+recup(va_param_r:APIRECUP,callback:Function){
+
  
   /*var project = va_param_r.project;
   var id = va_param_r.id;
@@ -144,6 +155,12 @@ recup(va_param_r:APIRECUP, callback: Function){
       callback(this.reponse.body)
    })*/
   
+   const headers = new HttpHeaders("Cookie: SADTI="+this.session_str);
+   //headers.append('Cookie','SADTI='+this.session_str);
+   console.log(headers);
+   this._http_o.get(this.url + "/timemgnt/project?enabled=1",{/*"headers":headers,*/ withCredentials:true}).subscribe((va_reponse_o)=>{
+    callback(va_reponse_o)
+   });
 }
 
 

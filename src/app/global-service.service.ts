@@ -7,6 +7,15 @@ import { Router } from '@angular/router';
 export class GlobalServiceService {
 
   constructor() { }
+
+  test!:String;
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      window.location.reload();
+      event.target.complete();
+    }, 2000);
+  };
 }
 
 export class Navigate{
@@ -17,5 +26,7 @@ export class Navigate{
 go(){
   this.router.navigate([this.url]);
 }
+
+
 }
 

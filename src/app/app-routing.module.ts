@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ChangeMdpComponent } from './change-mdp/change-mdp.component';
+import { ListProjetComponent } from './list-projet/list-projet.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { PageProjetComponent } from './page-projet/page-projet.component';
 import { Tab1Page } from './tab1/tab1.page';
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'change_pass', component: ChangeMdpComponent },
   { path: 'main_menu', component: MenuPrincipalComponent },
   { path: 'page_projet', component: PageProjetComponent },
-  
+  { path:'list_projet', component: ListProjetComponent},
   
 ];
 @NgModule({

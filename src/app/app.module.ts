@@ -13,9 +13,10 @@ import { PageProjetComponent } from './page-projet/page-projet.component';
 import { CookieService } from 'ng2-cookies';
 import { CapacitorCookiesPluginWeb } from '@capacitor/core/types/core-plugins';
 import { ApiService } from './api.service';
+import { ListProjetComponent } from './list-projet/list-projet.component';
 
 @NgModule({
-  declarations: [AppComponent ,ChangeMdpComponent,MenuPrincipalComponent,PageProjetComponent],
+  declarations: [AppComponent ,ChangeMdpComponent,MenuPrincipalComponent,PageProjetComponent,ListProjetComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
