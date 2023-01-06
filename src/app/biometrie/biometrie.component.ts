@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APILOGIN_IN } from '../api.service';
+import { APILOGIN_IN, APILOGIN_OUT } from '../api.service';
 import { NativeBiometric } from "capacitor-native-biometric";
 @Component({
   selector: 'app-biometrie',
@@ -11,19 +11,19 @@ export class BiometrieComponent implements OnInit {
   router: any;
  
 
-  constructor(private faio: FingerprintAIO) { }
+  constructor() { }
 
   ngOnInit() {
     
   }
 
-  popUp(){
-      this.faio.show({
-        clientId: 'TEST',
-        clientSecret: 'password'
-      }).then((result:any)=>console.log(result))
-      .catch((error:any)=> console.log(error));
-  }
+  // popUp(){
+  //     this.faio.show({
+  //       clientId: 'TEST',
+  //       clientSecret: 'password'
+  //     }).then((result:any)=>console.log(result))
+  //     .catch((error:any)=> console.log(error));
+  // }
 
   verifBio(){
     var vl_param_o : APILOGIN_IN;

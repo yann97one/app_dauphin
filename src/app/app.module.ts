@@ -14,9 +14,10 @@ import { CookieService } from 'ng2-cookies';
 import { CapacitorCookiesPluginWeb } from '@capacitor/core/types/core-plugins';
 import { ApiService } from './api.service';
 import { ListProjetComponent } from './list-projet/list-projet.component';
+import { BiometrieComponent } from './biometrie/biometrie.component';
 
 @NgModule({
-  declarations: [AppComponent ,ChangeMdpComponent,MenuPrincipalComponent,PageProjetComponent,ListProjetComponent],
+  declarations: [AppComponent ,ChangeMdpComponent,MenuPrincipalComponent,PageProjetComponent,ListProjetComponent,BiometrieComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
