@@ -1,9 +1,9 @@
-<div class="container">
-  <ion-card>
-    <ion-icon name="finger-print"></ion-icon>
-    <ion-card-header>
-      <ion-card-title>S'authentifier</ion-card-title>
-      
-    </ion-card-header>
-    </ion-card>
-</div>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="container">
+    <img src="assets/img/dti.png">
+  </div>
+</ion-content>
+

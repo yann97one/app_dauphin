@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Cookie } from 'ng2-cookies';
 import { isPlatform } from '@ionic/angular';
-import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
+import { NativeBiometric } from "capacitor-native-biometric";
 
 //import {MatIconRegistry}
 @Component({
@@ -37,15 +37,15 @@ export class Tab1Page {
   forcedChange! : string;
   protected display2fa : string;
   button! : boolean;
-  constructor(private api: ApiService, private router : Router,private http : HttpClient, private faio : FingerprintAIO) { 
+  constructor(private api: ApiService, private router : Router,private http : HttpClient) { 
 
     this.display2fa = "none";
   }
 
   async verifIsAvailable(){
-    const dispo = await this.faio.isAvailable();
-    try{
-      if(dispo== true){
+    const dispo = await NativeBiometric.isAvailable()
+      try{
+      if(dispo){
         console.log("VALIDE")
         this.router.navigate(['/','bio'])
       }

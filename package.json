@@ -27,6 +27,7 @@
     "@capacitor/ios": "4.6.1",
     "@capacitor/keyboard": "^4.1.0",
     "@capacitor/status-bar": "^4.1.1",
+    "@capacitor/toast": "^4.1.0",
     "@ionic/angular": "^6.1.9",
     "@ionic/cordova-builders": "^7.0.0",
     "capacitor-native-biometric": "^4.1.3",

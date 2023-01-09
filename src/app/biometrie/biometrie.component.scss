@@ -3,23 +3,11 @@
         flex-direction: column;
         justify-content: center;
         position: relative;
-    ion-card{
-        position: absolute;
+   
+    img{
         margin: auto;
-        top: 25em;
-        left: 5em;
-        width: 20em;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        ion-icon{
-            font-size: 100px;
-            display: block;
-            margin: auto;
-        }
-
-        ion-card-header{
-            text-align: center;
-        }
+        top: 1em;
+        position: relative;
     }
 }

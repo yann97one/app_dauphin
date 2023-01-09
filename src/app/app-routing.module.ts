@@ -10,7 +10,7 @@ import { Tab2Page } from './tab2/tab2.page';
 import { Tab3Page } from './tab3/tab3.page';
 
 const routes: Routes = [
-  { path: '',loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)},
+  //{ path: '',loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)},
   { path: 'forgetpass', component: Tab2Page },
   { path: 'Tab1Page', component: Tab1Page },
   { path: 'errPage', component: Tab3Page },
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'main_menu', component: MenuPrincipalComponent },
   { path: 'page_projet', component: PageProjetComponent },
   { path:'list_projet', component: ListProjetComponent},
-  { path:'bio', component: BiometrieComponent},
+  { path:'', component: BiometrieComponent},
   
 ];
 @NgModule({
