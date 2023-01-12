@@ -18,7 +18,7 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
 
 
   display!: boolean
-
+  auth!:boolean;
   constructor(private router: Router, private biom: BioLoginService, private api: ApiService) { }
 
   async ngAfterViewInit(): Promise<void> {
@@ -140,7 +140,7 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
         "password":response.password,
         "key2fa":this.loginAuth2fa()
       }
-      /*this.api.login(vl_param_o, (va_json: APILOGIN_OUT) => this.callBackLogin(va_json));*/
+      this.verifBio()
     
     }).catch((err)=>{
       console.error("Erreur d'auth2fa :  "+err)
@@ -202,9 +202,13 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
         input = {
           "login": response.username,
           "password": response.password,
-          
         }
-        this.api.login(input, (va_json_o: APILOGIN_OUT) => { this.callBackLogin(va_json_o) })
+        if(this.auth==true){
+          console.log("AUTH TRUE")
+          input.key2fa=this.loginAuth2fa();
+        }
+        
+         this.api.login(input, (va_json_o: APILOGIN_OUT) => { this.callBackLogin(va_json_o) })
 
 
       })
@@ -245,17 +249,18 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
 
 
 
-  async callBackLogin(json: APILOGIN_OUT) {
+   callBackLogin(json: APILOGIN_OUT) {
     
     
     if (json.use2fa != undefined && json.use2fa == 1) {
+      this.auth=true;
       this.display=true;
-      await Toast.show({
+       Toast.show({
         text: "Auth A 2 Facteurs",
         duration: "short",
         position: "bottom"
       })
-      this.onValid2FA();
+      
  
       return
     } else {
@@ -269,6 +274,8 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/', 'main_menu']);
     }
   }
+
+ 
 
 
   
