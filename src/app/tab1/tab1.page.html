@@ -37,7 +37,8 @@
 
   <!-- <img (click)="hidePass()"class="off" src="assets/icon/eye-off.svg"> -->
 </ion-content>
-<div #div [style.display]="display2fa">
+<app-auth-facteurs *ngIf="button==true" (authfa)="loginAuth2fa($event)"></app-auth-facteurs>
+<!-- <div #div [style.display]="display2fa">
   <div class="auth">
     <ion-label>Code authentification à deux facteurs</ion-label>
     <ion-input [(ngModel)]="auth2fa" placeholder="Custom input" class="input"></ion-input>
@@ -46,10 +47,10 @@
     </ion-button>
 
   </div>
-</div>
+</div> -->
 <ion-footer>
   <div>
-    <ion-button (click)="onClick()" expand="full" [disabled]="button" type="submit">Valider</ion-button>
+    <ion-button (click)="onClick()" expand="full" [disabled]="button" type="submit" >Valider</ion-button>
   </div>
 </ion-footer>
                                       <!-- PARTIE COMMENTEE -->

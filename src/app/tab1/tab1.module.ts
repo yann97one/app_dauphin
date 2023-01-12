@@ -33,11 +33,10 @@ class MyErrorHandler implements ErrorHandler{
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule,
     RouterModule,
     
   ],
   providers: [{provide: ErrorHandler, useClass: MyErrorHandler}],
-  declarations: [Tab1Page]
+  
 })
 export class Tab1PageModule {}

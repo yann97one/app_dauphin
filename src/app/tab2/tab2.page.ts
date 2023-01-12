@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthFacteursComponent } from '../auth-facteurs/auth-facteurs.component';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',

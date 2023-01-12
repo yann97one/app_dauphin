@@ -17,10 +17,11 @@ import { BiometrieComponent } from './biometrie/biometrie.component';
 import { Tab1Page } from './tab1/tab1.page';
 import { Tab2Page } from './tab2/tab2.page';
 import { Tab3Page } from './tab3/tab3.page';
+import { AuthFacteursComponent } from './auth-facteurs/auth-facteurs.component';
 
 
 @NgModule({
-  declarations: [AppComponent ,ChangeMdpComponent,MenuPrincipalComponent,PageProjetComponent,ListProjetComponent,BiometrieComponent,Tab1Page,Tab2Page,Tab3Page],
+  declarations: [AppComponent ,ChangeMdpComponent,MenuPrincipalComponent,PageProjetComponent,ListProjetComponent,BiometrieComponent,Tab1Page,Tab2Page,Tab3Page,AuthFacteursComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},

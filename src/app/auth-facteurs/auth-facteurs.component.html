@@ -1,0 +1,10 @@
+<div>
+  <div class="auth" [style.display]="display">
+    <ion-label>Code authentification à deux facteurs</ion-label>
+    <ion-input [(ngModel)]="auth2fa" placeholder="A2F" class="input"></ion-input>
+    <ion-button  expand="block" shape="round"  color="success" (click)="authUser(this.auth2fa)">
+      CONFIRMER SAISIE
+    </ion-button>
+
+  </div>
+</div>

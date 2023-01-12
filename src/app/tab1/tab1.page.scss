@@ -79,6 +79,9 @@ ion-content {
                 width: 10em;
                 border: 1px black solid;
             }
+            ion-label{
+                color: black;
+            }
         }
     }
 
@@ -178,6 +181,7 @@ ion-header {
             position: absolute;
             right: 3px;
             top: 6px;
+            margin: 0;
             /*display: inline-block;
              text-align: right;
              right: -1px;

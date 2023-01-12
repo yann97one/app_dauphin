@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthFacteursComponent } from './auth-facteurs/auth-facteurs.component';
 import { BiometrieComponent } from './biometrie/biometrie.component';
 import { ChangeMdpComponent } from './change-mdp/change-mdp.component';
 import { ListProjetComponent } from './list-projet/list-projet.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'page_projet', component: PageProjetComponent },
   { path:'list_projet', component: ListProjetComponent},
   { path:'', component: BiometrieComponent},
+  { path:'2fa', component: AuthFacteursComponent},
   
 ];
 @NgModule({
