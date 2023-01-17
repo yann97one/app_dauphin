@@ -1,8 +1,11 @@
-.container{
+
+
+    .container{
         display: flex;
         flex-direction: column;
         justify-content: center;
         position: relative;
+        background-color: #fff;
    
     img{
         margin: auto;
@@ -11,3 +14,5 @@
         position: relative;
     }
 }
+
+

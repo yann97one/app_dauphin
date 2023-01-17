@@ -1,67 +1,52 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-content class="ion-padding">
-    <a routerLink="page_projet" routerLinkActive="active" class="menu_link">
-      <li>Projets</li>
-    </a>
-
-    <a [routerLink]="['/main_menu']" routerLinkActive="active" class="menu_link">
-      <li>Page principale</li>
-    </a>
-  </ion-content>
-
-</ion-menu>
-
-<div class="ion-page" id="main-content">
-
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title><a routerLink="/main_menu">WebApp</a></ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding ng-valid ng-invalid" [fullscreen]="true">
-    <div class="select_proj">
-      <h5>Intitulé du projet*</h5>
-      <select name="" id="" class="select" [(ngModel)]="name">
-        <option value="test">{{this.name}}</option>
-      </select>
-    </div>
-    <div class="date">
-      <h5>Date du projet*</h5>
-      <input type="date" name=""  [(ngModel)]="date">
-    </div>
-    <h5>Durée du projet*</h5>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Retour"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  
+  <div class="select">
+    <h5>Projet</h5>
+    
+  
+    <select name="" id="" [(ngModel)]="projectLabel">
+      <option value="" disabled selected>Selectionner un projet</option>
+      <option [value]="this.name" *ngFor="let project of projects" >{{this.name}}</option>
+      
+      
+    </select>
+  </div>
+  
+  <div class="datetime">
+    <h5>Date</h5>
+    <!-- [value]="this.jannee.getFullYear()+'-'+this.month.getMonth()+'-'+this.jours.getDate()" -->
+    <ion-input type="date" [(ngModel)]="date"></ion-input>
+    
+  </div>
+  
+  <div class="champs">
     <ion-item fill="solid">
       <ion-label position="floating">Heures</ion-label>
-      <ion-input [required]="true"></ion-input>
+      <ion-input type="number" [(ngModel)]="hours"></ion-input>
     </ion-item>
     <ion-item fill="solid">
       <ion-label position="floating">Minutes</ion-label>
-      <ion-input></ion-input>
+      <ion-input type="number" [(ngModel)]="minute"></ion-input>
     </ion-item>
-
-    <div class="comment">
-
-      <ion-item fill="solid">
-        <ion-label position="floating">Commentaire</ion-label>
-        <ion-textarea placeholder="écrivez votre commentaire" [(ngModel)]="comment" [autoGrow]="true" cols="25"></ion-textarea>
-      </ion-item>
-    </div>
-
-  </ion-content>
-</div>
-
-<ion-footer>
-  <ion-button expand="full" [disabled]="IsDisabled" (click)="submit()">
-    <ion-icon name="checkmark-outline"></ion-icon>
-    Valider
-  </ion-button>
-</ion-footer>
+    <ion-item fill="solid">
+      <ion-label position="floating">Commentaire</ion-label>
+      <ion-textarea type="text" [(ngModel)]="comments" [autoGrow]="true"></ion-textarea>
+    </ion-item>
+  
+  
+  
+   
+  
+    <ion-button (click)="submitProject()">
+      Enregistrer
+    </ion-button>
+  </div>
+</ion-content>

@@ -12,7 +12,7 @@ export interface APILOGIN_IN{
   //{error:{code:'', string:[]}, locked?:'', use2fa?:'', forceChange?:''}
   login:string;
   password:string;
-  key2fa? : String;
+  key2fa? : string;
   newPassword? : String; 
   
 }
@@ -29,14 +29,18 @@ export interface APILOGIN_OUT{
 }
 
 export interface APIRECUP{
-  project: string | any,
-  id: string | any,
+  projectId?:string,
+  project?: string | any,
+  id?: string | any,
   createDate?:Date,
   creatorId?: number,
   creatorLabel?:string,
   enabled?:number,
   participant?:string,
   projectLabel?: string
+  date?:string;
+charging?:number;
+comment?:string;
   //{"error":{"code":200,"string":["Success"]},"projects":[{"id":"3","createDate":"21\/12\/2022","creatorId":"119",
   //"creatorLabel":"SEPULCRE Patrice","label":"tretrtrtret","enabled":"1","charging":"60",
   //"participants":[{"id":"119","type":"0"},{"id":"4317","type":"0"}]},{"id":"2","createDate":"19\/12\/2022",
@@ -69,7 +73,7 @@ export class ApiService {
     this.idSession = null;
   }
 
-   url = "https://webapp.dauphintelecom-infrastructure.com/api";
+     url = "https://webapp.dauphintelecom-infrastructure.com/api";
     //url = "http://webapp.dauphintelecom-infrastructure.local/api";
      //url = "http://localhost:8100/api";
    
@@ -79,21 +83,23 @@ export class ApiService {
     
     vl_url_str = this.url+"/auth?login=" +va_param_o.login + "&password=" + va_param_o.password
     if (va_param_o.key2fa != null) {
-      vl_url_str += "&key2fa=" + va_param_o.key2fa;
+      vl_url_str += "&key2fa=" + va_param_o.key2fa
+      console.log(va_param_o.key2fa)
     }
 
     if (va_param_o.newPassword != null) {
       vl_url_str = this.url+"/auth?login=" + decodeURIComponent(va_param_o.login.substring(1,va_param_o.login.length -1)) + "&password=" + decodeURIComponent(va_param_o.password.substring(1,va_param_o.password.length -1)) + "&newPassword=" + va_param_o.newPassword;
     }
-    
-    
+    vl_url_str.replace(/\s/g, "")
+    vl_url_str = vl_url_str.split(" ").join("");
+    console.log(vl_url_str)
    
 
 
     this._http_o.get<APILOGIN_OUT>(vl_url_str, { responseType:"json",observe:'response',withCredentials:true})
         .subscribe((va_response_o)=> {
-          
-            
+            vl_url_str.replace(/\s/g, "")
+            console.log(vl_url_str)
           /*const response =  await Http.get({
             url: 'http://webapp.dauphintelecom-infrastructure.local/api/'+vl_url_str,
             webFetchExtra: {
@@ -133,7 +139,7 @@ export class ApiService {
     }
  }*/
 
-recup(va_param_r:APIRECUP,callback:Function){
+recup(callback:Function){
 
  
   /*var project = va_param_r.project;
@@ -155,10 +161,12 @@ recup(va_param_r:APIRECUP,callback:Function){
       callback(this.reponse.body)
    })*/
   
-   const headers = new HttpHeaders("Cookie: SADTI="+this.session_str);
-   //headers.append('Cookie','SADTI='+this.session_str);
-   console.log(headers);
-   this._http_o.get(this.url + "/timemgnt/project?enabled=1",{/*"headers":headers,*/ withCredentials:true}).subscribe((va_reponse_o)=>{
+   
+  //"https://webapp.dauphintelecom-infrastructure.com/api"
+   this._http_o.get<any>(this.url + "/timemgnt/project",{ withCredentials:true,responseType:"json",reportProgress:true}).subscribe((va_reponse_o)=>{
+    console.log(va_reponse_o)
+    console.log(va_reponse_o.projects)
+    
     callback(va_reponse_o)
    });
 }

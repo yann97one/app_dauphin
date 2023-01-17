@@ -23,29 +23,32 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
 
   async ngAfterViewInit(): Promise<void> {
     var va_param_o: APILOGIN_IN;
-    if (isPlatform("android")) { //vérifie si l'utilisateur utilise un appareil android
-      NativeBiometric.verifyIdentity({
-        reason: 'test',
-        title: 'S\'authentifier',
-        description: 'test'
-      }).then(async () => {
-         await NativeBiometric.getCredentials({ server: "webapp" }).then((response) => {
-          va_param_o={
-            "login":response.username,
-            "password":response.password
-          }
-
-          this.api.login(va_param_o,(va_json_o:APILOGIN_OUT)=> this.callBackLogin(va_json_o))
+    if(await NativeBiometric.isAvailable()){
+      if (isPlatform("android")) { //vérifie si l'utilisateur utilise un appareil android
+        await NativeBiometric.verifyIdentity({
+          title: 'S\'authentifier',
         })
-      }).catch((err) => {
-        this.router.navigate(['/', 'Tab1Page'])
-        Toast.show({
-          "text": "Erreur d'authentification",
-          "duration":"long",
-          "position":'bottom'
+        .then(async () => {
+           await NativeBiometric.getCredentials({ server: "webapp" }).then((response) => {
+            va_param_o={
+              "login":response.username,
+              "password":response.password
+            }
+  
+            this.api.login(va_param_o,(va_json_o:APILOGIN_OUT)=> this.callBackLogin(va_json_o))
+          })
+        }).catch((err) => {
+          this.router.navigate(['/', 'login'])
+          Toast.show({
+            "text": "Erreur d'authentification",
+            "duration":"long",
+            "position":'bottom'
+          })
+          
+          console.error(err)
         })
-        console.error(err)
-      })
+    }else{this.router.navigate(['/','login'])}
+    
       // get credential
       // api login
       // si 2FA => affiche 2fa (display)
@@ -129,18 +132,23 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
 
   }
 
-  //On appelle cette fonctin que si l'A2F est activée
-   onValid2FA() {
+  //On appelle cette fonctin que si l'A2principaleF est activée
+   /*onValid2FA() {
     console.log("onValid2FA")
      NativeBiometric.getCredentials({server:"webapp"}).then((response)=>{
       var vl_param_o:APILOGIN_IN;
+      
+
       console.log(response.username +" ",response.password)
       vl_param_o={
         "login": response.username,
         "password":response.password,
         "key2fa":this.loginAuth2fa()
       }
-      this.verifBio()
+
+     
+
+      this.api.login(vl_param_o,(va_json_o:APILOGIN_OUT)=>this.callBackLogin(va_json_o))
     
     }).catch((err)=>{
       console.error("Erreur d'auth2fa :  "+err)
@@ -150,7 +158,7 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
     // login API + 2fa
     // OK => page principale
     // erreur => traite l'erreur ex chgt mdp
-  }
+  }*/
 
   ngOnInit() {
 
@@ -175,13 +183,7 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
     return
   }
 
-  loginAuth2fa(authfa='') {
-    console.log(authfa)
-    console.log(authfa)
-    this.verifBio();
-    
-    return authfa
-  }
+  
 
 
 
@@ -193,31 +195,31 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
       event.target.complete();
     }, 2000);
   };
+  loginAuth2fa(authfa='') {
+    console.log(authfa)
+    this.verifBio(authfa);
+    return authfa
+  }
 
-  verifBio() {
+  async verifBio(event:string) {
     var input: APILOGIN_IN;
 
-    const infoUser = async () => await NativeBiometric.getCredentials({ server: "webapp" })
-      .then((response) => {
+     await NativeBiometric.getCredentials({ server: "webapp" })
+     .then((response) => {
         input = {
           "login": response.username,
           "password": response.password,
         }
-        if(this.auth==true){
-          console.log("AUTH TRUE")
-          input.key2fa=this.loginAuth2fa();
-        }
-        
+         input.key2fa=event;
          this.api.login(input, (va_json_o: APILOGIN_OUT) => { this.callBackLogin(va_json_o) })
-
-
+        return
       })
       .catch((err) => {
         console.error("Erreur d'auth :  " + err)
         
-        //this.router.navigate(['/', 'Tab1Page']);
+        this.router.navigate(['/', 'login']);
       })
-    infoUser();
+    
   }
   /*if (login != null && pass != null) {
     if (typeof login != "undefined" && typeof pass != "undefined") {
@@ -243,7 +245,7 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
       console.error('Vérifiez vos identifiants')
     }
   } else {
-    this.router.navigate(['/', 'Tab1Page']);
+    this.router.navigate(['/', 'login']);
     console.log("Entrez vos id dans la conn")
   }*/
 
@@ -269,6 +271,16 @@ export class BiometrieComponent implements OnInit, AfterViewInit {
         return
         
       }
+      if(json.error.code!=200){
+        Toast.show({
+          "text":"Erreur d'authentification",
+          "duration":"long",
+          "position":"center"
+        })
+        return
+      }
+
+      
 
 
       this.router.navigate(['/', 'main_menu']);

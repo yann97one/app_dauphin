@@ -1,46 +1,59 @@
-#main-content{
+ion-content{
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    .select_proj{
-        margin-bottom: 2em;
-        .select{
-            width: 15em;
-            text-align: center;
-            border: none;
-            border-bottom:1px black solid ;
-            
-        }
-    }
-
-    .comment{
-        ion-textarea{
-            border: 1px solid black;
-            margin-top: 1em;
-            height: 20em;
-        }
-    }
-
-    .date{
-        margin-bottom: 1em;
-        input{
-            font-size: 1em;
-            width: 15em;
-            margin-bottom: 3em;
-            text-align: center;
-        }
-    }
-
-    
-
-}
-
-ion-footer{
-    top: 790px;
-    bottom: -53em;
-    left: -5px;
-    
-    ion-button{
+    text-align: center;
+    .champs {
+        position: relative;
         width: 100%;
+        margin: auto;
+        top: 5em;
+    
+        ion-input {
+            padding: 1em;
+            --background-color:white;
+        }
+        ion-button{
+            margin-top: 5em;
+        }
+    }
+    
+    .datetime {
+        top: 3em;
+        position: relative;
+       ion-input{
+        margin: auto;
+        text-align: center;
+        width: 10em;
+        background-color: rgba(245, 245, 245, 0.801);
+       }
+    }
+    
+    h5 {
+        margin-left: 1em;
+    }
+    
+    
+    
+    
+    .select {
+    
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            
+            font-size: 16px;
+            color: #555;
+            appearance: none;
+            --background-color:white;
+        }
+        
+    
        
     }
+    
+    ion-label {
+        --color: black;
+    }
 }
+

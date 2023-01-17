@@ -28,7 +28,7 @@ export class BioLoginService {
       
     }).catch((err) => {
       console.error("Erreur d'auth :", err);
-      this.router.navigate(['/', 'Tab1Page'])
+      this.router.navigate(['/', 'login'])
     })
 
       /**

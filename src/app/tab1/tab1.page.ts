@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Cookie } from 'ng2-cookies';
 import { NativeBiometric } from 'capacitor-native-biometric';
-
+import { Toast } from '@capacitor/toast';
 
 //import {MatIconRegistry}
 @Component({
@@ -54,24 +54,26 @@ export class Tab1Page {
     };
     
     
-
+    
     this.checkIfExist(this.login, this.pwd);
     this.api.login(vl_param_o, (va_json_o: APILOGIN_OUT) => { this.callBackLogin(va_json_o) });
+    console.log(vl_param_o)
   }
 
   async checkIfExist(login: string, pwd: string) {
-
-    await NativeBiometric.getCredentials({
-      server: "webapp"
-    }).catch((err) => {
-      console.error(err);
-      NativeBiometric.setCredentials({
-        username: login,
-        password: pwd,
+   
+      await NativeBiometric.getCredentials({
         server: "webapp"
-      })
-    })
-
+      }).catch((err) => {
+        console.error(err);
+        NativeBiometric.setCredentials({
+          username: login,
+          password: pwd,
+          server: "webapp"
+        })
+      })  
+    
+   
   }
 
   handleRefresh(event: any) {
@@ -103,6 +105,7 @@ export class Tab1Page {
            return
        }else{
          this.api.login(vl_param_o,(va_json_o:APILOGIN_OUT)=>{this.callBackLogin(va_json_o)});
+         
        }    
  
        
@@ -130,7 +133,8 @@ export class Tab1Page {
       this.button = false;
       console.log("false")
     }
-
+    this.router.navigate(['/', 'main_menu'])
+    
     if (json.forceChange != undefined && json.forceChange == 1) {
       this.router.navigate(['/', 'change_pass']);
       return
@@ -141,25 +145,19 @@ export class Tab1Page {
       //Cookie.set("SADTI",JSON.stringify(json.session));
       return
     }
+    if(json.error.code!=200){
+      Toast.show({
+        "text":"Erreur d'authentification",
+        "duration":"long",
+        "position":"center"
+      })
+      return
+    }
 
-    console.log("Cookie.check :" + Cookie.check("SADTI"));
-    console.log(json);
-
-
-    this.http.get(this.api.url, { observe: 'response' }).subscribe(response => {
-      const cookieHeader = response.headers.get('Set-Cookie');
-      if (cookieHeader) {
-        const cookie = cookieHeader.split(';').find(c => c.startsWith('SADTI'));
-        console.log("Cookie Sadti :" + cookie);
-      }
-
-
-    })
-
-
-
-
-    this.router.navigate(['/', 'main_menu'])
+    //this.router.navigate(['/', 'main_menu'])
+    
+    
+      
   }
 
 

@@ -12,7 +12,7 @@ export class ForgetPassComponent implements OnInit {
 
   constructor(private router:Router) { }
   url! : String
-  public routerLink = "/Tab1Page";
+  public routerLink = "/login";
   
 go(){
   console.log("toto");
