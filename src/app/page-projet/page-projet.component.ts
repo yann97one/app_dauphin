@@ -74,7 +74,7 @@ test(){
 }
 
   ngOnInit() { }
-  submitProject() {
+ submitProject() {
 
     var json : APIRECUP;
     
