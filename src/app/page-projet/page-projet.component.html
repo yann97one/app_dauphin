@@ -14,7 +14,7 @@
   
     <select name="" id="" [(ngModel)]="projectLabel">
       <option value="" disabled selected>Selectionner un projet</option>
-      <option [value]="this.name" *ngFor="let project of projects" >{{this.name}}</option>
+       <option *ngFor="let label of labels" >{{label}}</option>
       
       
     </select>
