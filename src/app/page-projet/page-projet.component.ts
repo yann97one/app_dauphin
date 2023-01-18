@@ -3,6 +3,18 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { IonInput } from '@ionic/angular';
 import { APIRECUP, ApiService } from '../api.service';
 import * as moment from 'moment';
+
+interface Project {
+  id?: string;
+  createDate?: string;
+  creatorId?: string;
+  creatorLabel?: string;
+  enabled?: string;
+  label?: string;
+  locked?: number;
+  participants?: {id:string, type: string}[];
+  typeId?: string;
+}
 @Component({
   selector: 'app-page-projet',
   templateUrl: './page-projet.component.html',
@@ -31,7 +43,7 @@ export class PageProjetComponent implements OnInit, AfterViewInit {
     // });
    }
    
-  ngAfterViewInit(): void {
+   ngAfterViewInit(): void {
     //this.api.recup((va_json_re : APIRECUP)=>{this.callBackRecup(va_json_re)});
     
     this.http.get<any>(this.api.url+"/timemgnt/project?enabled=1",
@@ -40,16 +52,25 @@ export class PageProjetComponent implements OnInit, AfterViewInit {
 
       .subscribe((va_response_o) => {
           
-          this.projects = va_response_o.projects;
-          console.log(this.projects.length)
-        if (va_response_o != null && va_response_o != undefined) {
-          for (let i = 0; i < this.projects.length; i++) {
+
+        va_response_o.projects.map( (project:Project) =>{
+          /**
+           * On utilise la methode map pour parcourir le tableau des projets et récupérer les propriétés 'label' de chaque objet. 
+           * et on utilise la méthode push pour ajouter ces labels dans le tableau vide que nous avons crée plus tôt.
+           */
+          if(project.label != null)
+            this.labels.push(project.label)
+        })
+        //   this.projects = va_response_o.projects;
+        //   console.log(this.projects.length)
+        // if (va_response_o != null && va_response_o != undefined) {
+        //   for (let i = 0; i < this.projects.length; i++) {
             
-            this.name = va_response_o.projects[i].label;
-            this.projectid = va_response_o.projects[i].id
-            console.log(this.name)
-          }
-        }
+        //     this.name = va_response_o.projects[i].label;
+        //     this.projectid = va_response_o.projects[i].id
+        //     console.log(this.name)
+        //   }
+        // }
         if (va_response_o.error.code != 200) {
 
           return;
